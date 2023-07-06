@@ -1,0 +1,32 @@
+struct fenwicktree {
+    int n;
+    vector<int> t;
+
+    fenwicktree(vector<int> &in) {
+        n = in.size()   ;
+        t.resize(n + 1);
+        for (int i = 0; i < n; i++) {
+            update(i+1, in[i]);
+        }
+    }
+
+    int sum(int x) {
+        int ret = 0;
+        while(x >= 1) {
+            ret = min(ret, t[x]);
+            x -= (x & -x);
+        }
+        return ret;
+    }
+
+    void update(int p, int v) {
+        while (p <= n) {
+            t[p] = min(t[p], v);
+            p += (p & -p);
+        }
+    }
+
+    int query(int l, int r) {
+        return sum(r) ^ sum(l - 1);
+    }
+};
