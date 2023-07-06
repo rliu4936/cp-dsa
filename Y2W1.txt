@@ -1,0 +1,37 @@
+CPSC 213 						4
+CPSC 221 						4
+STAT 201						3
+STAT/MATH 302 						3
+ECON 345						3
+
+17
+
+CPSC 368						3
+CPSC 310						4
+CPSC 313						3
+CPSC 320						4
+CPSC 340						3
+CPSC 440						3
+CPSC 420						3
+
+MATH 303 	Introduction to Stochastic Processes	3
+MATH 307 	Applied Linear Algebra			3
+
+STAT 305 	Introduction to Statistical Inference	3
+STAT 306 	Finding Relationships in Data		3
+STAT 301 	Statistical Modelling for Data Science	3
+STAT 406 	Methods for Statistical Learning	3
+STAT 443 	Time Series and Forecasting		3
+
+							41
+
+
+ECON COURSES
+
+ECON 325 Introduction to Econometrics I			3 XXX
+
+
+ECON 323 Quantitative Economic Modelling with Data Science Applications
+ECON 425 Advanced Econometrics
+ECON 526	Quantitative Economics with Data Science Applications
+
