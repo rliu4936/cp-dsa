@@ -1,0 +1,47 @@
+template <typename T>
+struct SegTree {
+    T val;
+    int lRange, rRange;
+    SegTree* lChild;
+    SegTree* rChild;
+
+    // change these two
+    T neutral = 2e9;
+    T merge(T x, T y) {
+        return min(x, y);
+    }
+
+    SegTree(vector<T>& a) : SegTree(0, a.size() - 1, a) {}
+
+    SegTree(int l, int r, vector<T>& a) {
+        lRange = l;
+        rRange = r;
+        if (l == r) {
+            val = a[l];
+            return;
+        }
+        int m = l + (r - l) / 2;
+        lChild = new SegTree(l, m, a);
+        rChild = new SegTree(m + 1, r, a);
+        val = merge(lChild->val, rChild->val);
+    }
+
+    T query(int L, int R) {
+        if (rRange < L || lRange > R) return neutral;
+        if (L <= lRange && rRange <= R) return val;
+        T ans = lChild->query(L, R);
+        ans = merge(ans, rChild->query(L, R));
+        return ans;
+    }
+
+    void update(int p, T v) {
+        if (rRange < p || lRange > p) return;
+        if (lRange == p && rRange == p) {
+            val = v;
+            return;
+        }
+        lChild->update(p, v);
+        rChild->update(p, v);
+        val = merge(lChild->val, rChild->val);
+    }
+};

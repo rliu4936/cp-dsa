@@ -1,0 +1,31 @@
+template <typename T>
+struct sparseTable {
+    vector<vector<T>> st;
+    int k, n;
+
+    // must be idempotent 
+    T merge(T x, T y) {
+        return min(x, y);
+    }
+
+    // O(nlogn) build
+    sparseTable(vector<T>& a) {
+        n = a.size();
+        k = __lg(n) + 1;
+        st.resize(k, vector<T>(n));
+        for (int i = 0; i < n; i++) {
+            st[0][i] = a[i];
+        }
+        for (int i = 1; i < k; i++) {
+            for (int j = 0; j + (1 << i) - 1 < n; j++) {
+                st[i][j] = merge(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
+            }
+        }
+    }
+
+    // O(1) query of [l, r] all merge() 0-indexed
+    T query(int l, int r) {
+        int len = __lg(r - l + 1);
+        return merge(st[len][l], st[len][r - (1 << len) + 1]);
+    }
+};
